@@ -1,11 +1,917 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=h1, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kobe Bryant - Black Mamba Tribute</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-black: #000000;
+            --color-white: #ffffff;
+            --color-gold: #FDB927;
+            --color-purple: #552583;
+            --color-gray: #666666;
+            --color-light-gray: #999999;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--color-black);
+            color: var(--color-white);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 1.5rem;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-logo span {
+            color: var(--color-gold);
+            font-weight: bold;
+            font-size: 1.25rem;
+            letter-spacing: 0.1em;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--color-white);
+            text-decoration: none;
+            font-size: 0.875rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('/kobe-bryant-playing-basketball-iconic-moment.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.4;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 0 1.5rem;
+        }
+
+        .hero-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .hero-title {
+            font-size: 6rem;
+            font-weight: 900;
+            letter-spacing: -0.05em;
+            line-height: 0.9;
+        }
+
+        .hero-title span {
+            color: var(--color-gold);
+            font-style: italic;
+        }
+
+        .hero-dates {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.25rem;
+            letter-spacing: 0.15em;
+        }
+
+        .hero-dates span:first-child,
+        .hero-dates span:last-child {
+            color: var(--color-light-gray);
+        }
+
+        .hero-dates span:nth-child(2) {
+            color: var(--color-gold);
+        }
+
+        .hero-button {
+            margin-top: 2rem;
+            padding: 1rem 2rem;
+            border: 2px solid var(--color-white);
+            background: transparent;
+            color: var(--color-white);
+            font-size: 0.875rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .hero-button:hover {
+            background: var(--color-white);
+            color: var(--color-black);
+        }
+
+        /* Quote Section */
+        .quote-section {
+            padding: 8rem 1.5rem;
+            background-color: var(--color-purple);
+        }
+
+        .quote-container {
+            max-width: 56rem;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .quote-text {
+            font-size: 2.5rem;
+            font-weight: 300;
+            line-height: 1.5;
+        }
+
+        .quote-author {
+            margin-top: 2rem;
+            font-size: 1.25rem;
+            letter-spacing: 0.15em;
+            color: var(--color-gold);
+        }
+
+        /* Legacy Section */
+        .legacy-section {
+            padding: 8rem 1.5rem;
+        }
+
+        .legacy-container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .legacy-content {
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .legacy-image {
+            flex: 1;
+            width: 100%;
+        }
+
+        .legacy-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .legacy-text {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .legacy-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .legacy-number {
+            font-size: 3.75rem;
+            font-weight: 900;
+            color: var(--color-gold);
+        }
+
+        .legacy-line {
+            height: 1px;
+            flex: 1;
+            background-color: var(--color-gold);
+        }
+
+        .legacy-title {
+            font-size: 3rem;
+            font-weight: 900;
+            letter-spacing: -0.025em;
+            line-height: 1.1;
+        }
+
+        .legacy-description {
+            font-size: 1.125rem;
+            line-height: 1.7;
+            color: var(--color-light-gray);
+        }
+
+        .legacy-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--color-gold);
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            letter-spacing: 0.05em;
+            color: var(--color-light-gray);
+        }
+
+        /* Mamba Mentality Section */
+        .mamba-section {
+            padding: 8rem 1.5rem;
+            background-color: #111111;
+        }
+
+        .mamba-container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .mamba-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .mamba-title {
+            font-size: 3.75rem;
+            font-weight: 900;
+            letter-spacing: -0.025em;
+            margin-bottom: 1.5rem;
+        }
+
+        .mamba-title span {
+            color: var(--color-gold);
+        }
+
+        .mamba-subtitle {
+            font-size: 1.25rem;
+            color: var(--color-light-gray);
+            max-width: 42rem;
+            margin: 0 auto;
+        }
+
+        .mamba-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .mamba-card {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            align-items: center;
+            border: 2px solid var(--color-gold);
+            padding: 2rem;
+        }
+
+        .mamba-card-reverse {
+            flex-direction: column;
+        }
+
+        .mamba-card-text {
+            flex: 1;
+        }
+
+        .mamba-card-title {
+            font-size: 1.875rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            color: var(--color-gold);
+        }
+
+        .mamba-card-description {
+            font-size: 1.125rem;
+            line-height: 1.7;
+            color: var(--color-light-gray);
+        }
+
+        .mamba-card-image {
+            width: 100%;
+            height: 16rem;
+        }
+
+        .mamba-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Achievements Section */
+        .achievements-section {
+            padding: 8rem 1.5rem;
+        }
+
+        .achievements-container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .achievements-title {
+            font-size: 3.75rem;
+            font-weight: 900;
+            letter-spacing: -0.025em;
+            margin-bottom: 5rem;
+            text-align: center;
+        }
+
+        .achievements-title span {
+            color: var(--color-gold);
+        }
+
+        .achievements-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .achievement-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            padding: 2rem;
+            border: 2px solid var(--color-purple);
+            min-width: 280px;
+        }
+
+        .achievement-number {
+            font-size: 4.5rem;
+            font-weight: 900;
+            color: var(--color-gold);
+        }
+
+        .achievement-label {
+            font-size: 0.875rem;
+            letter-spacing: 0.15em;
+            text-align: center;
+        }
+
+        .achievement-date {
+            font-size: 0.75rem;
+            color: var(--color-light-gray);
+        }
+
+        /* Numbers Section */
+        .numbers-section {
+            padding: 8rem 1.5rem;
+            background-color: var(--color-purple);
+        }
+
+        .numbers-container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .numbers-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            gap: 4rem;
+        }
+
+        .number-item {
+            text-align: center;
+        }
+
+        .number-value {
+            font-size: 9rem;
+            font-weight: 900;
+            color: var(--color-gold);
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+
+        .number-label {
+            font-size: 1.25rem;
+            letter-spacing: 0.15em;
+        }
+
+        .number-symbol {
+            font-size: 3.75rem;
+            font-weight: 900;
+            color: var(--color-gold);
+        }
+
+        .number-infinity {
+            color: var(--color-white);
+        }
+
+        /* Tribute Section */
+        .tribute-section {
+            padding: 8rem 1.5rem;
+        }
+
+        .tribute-container {
+            max-width: 56rem;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .tribute-title {
+            font-size: 3.75rem;
+            font-weight: 900;
+            letter-spacing: -0.025em;
+            margin-bottom: 3rem;
+        }
+
+        .tribute-title span {
+            color: var(--color-gold);
+        }
+
+        .tribute-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .tribute-image {
+            width: 100%;
+            height: auto;
+        }
+
+        .tribute-text {
+            font-size: 1.25rem;
+            line-height: 1.7;
+            color: var(--color-light-gray);
+        }
+
+        .tribute-message {
+            font-size: 1.5rem;
+            font-weight: bold;
+            line-height: 1.5;
+        }
+
+        .tribute-footer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 4rem 0;
+            border-top: 2px solid var(--color-gold);
+            border-bottom: 2px solid var(--color-gold);
+        }
+
+        .tribute-hashtag {
+            font-size: 5rem;
+            font-weight: 900;
+            color: var(--color-gold);
+        }
+
+        .tribute-slogan {
+            font-size: 1.5rem;
+            letter-spacing: 0.15em;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 1.5rem;
+            background-color: #111111;
+            border-top: 2px solid var(--color-gold);
+        }
+
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--color-gold);
+        }
+
+        .footer-tagline {
+            font-size: 0.875rem;
+            color: var(--color-light-gray);
+            text-align: center;
+        }
+
+        .footer-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-motto {
+            font-size: 0.875rem;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-social a {
+            color: var(--color-white);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.3s;
+        }
+
+        .footer-social a:hover {
+            color: var(--color-gold);
+        }
+
+        .footer-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-copyright {
+            font-size: 0.75rem;
+            color: var(--color-light-gray);
+        }
+
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            .hero-title {
+                font-size: 9rem;
+            }
+
+            .quote-text {
+                font-size: 3rem;
+            }
+
+            .legacy-content {
+                flex-direction: row;
+            }
+
+            .mamba-card {
+                flex-direction: row;
+            }
+
+            .mamba-card-reverse {
+                flex-direction: row-reverse;
+            }
+
+            .mamba-card-image {
+                width: 16rem;
+            }
+
+            .numbers-content {
+                flex-direction: row;
+            }
+
+            .footer-content {
+                flex-direction: row;
+            }
+
+            .footer-brand {
+                align-items: flex-start;
+            }
+
+            .footer-tagline {
+                text-align: left;
+            }
+
+            .footer-info {
+                align-items: flex-end;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <h1>thành</h1>
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span>Kobe Bryant</span>
+            </div>
+            <div class="nav-links">
+                <a href="#legacy">Legacy</a>
+                <a href="#mamba">Mamba Mentality</a>
+                <a href="#achievements">Achievements</a>
+                <a href="#tribute">Tribute</a>
+            </div>
+        </div>
+    </nav>
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="hero-inner">
+                <h1 class="hero-title">
+                    BLACK<br>
+                    <span>MAMBA</span>
+                </h1>
+                <div class="hero-dates">
+                    <span>1978</span>
+                    <span>—</span>
+                    <span>2020</span>
+                </div>
+                <button class="hero-button">Explore Legacy</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="quote-section">
+        <div class="quote-container">
+            <blockquote class="quote-text">
+                "The most important thing is to try and inspire people so that they can be great in whatever they want
+                to do."
+            </blockquote>
+            <p class="quote-author">— KOBE BRYANT</p>
+        </div>
+    </section>
+
+    <section id="legacy" class="legacy-section">
+        <div class="legacy-container">
+            <div class="legacy-content">
+                <div class="legacy-image">
+                    <img src=""alt="Kobe Bryant">
+                </div>
+                <div class="legacy-text">
+                    <div class="legacy-header">
+                        <span class="legacy-number">01</span>
+                        <div class="legacy-line"></div>
+                    </div>
+                    <h2 class="legacy-title">A LEGEND FOREVER</h2>
+                    <p class="legacy-description">
+                        Kobe Bean Bryant was an American professional basketball player who spent his entire 20-year
+                        career with the Los Angeles Lakers in the NBA. Widely regarded as one of the greatest players of
+                        all time, Kobe's relentless work ethic and competitive spirit inspired millions around the
+                        world.
+                    </p>
+                    <p class="legacy-description">
+                        His legacy extends far beyond basketball—through his Mamba Mentality, he taught us about
+                        dedication, perseverance, and the pursuit of excellence in every aspect of life.
+                    </p>
+                    <div class="legacy-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">20</span>
+                            <span class="stat-label">SEASONS</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">5</span>
+                            <span class="stat-label">CHAMPIONSHIPS</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">18</span>
+                            <span class="stat-label">ALL-STAR</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    Mamba Mentality Section
+    <section id="mamba" class="mamba-section">
+        <div class="mamba-container">
+            <div class="mamba-header">
+                <h2 class="mamba-title">
+                    MAMBA <span>MENTALITY</span>
+                </h2>
+                <p class="mamba-subtitle">
+                    A constant quest to be the best version of yourself
+                </p>
+            </div>
+
+            <div class="mamba-cards">
+                Mentality Card 1
+                <div class="mamba-card">
+                    <div class="mamba-card-text">
+                        <h3 class="mamba-card-title">PASSION</h3>
+                        <p class="mamba-card-description">
+                            Love what you do. If you don't love it, you won't put in the extra work required to be
+                            great.
+                        </p>
+                </div>                       
+                    <div class="mamba-card-image">
+                        <img src="https://miro.medium.com/v2/resize:fit:1400/1*IWRsQNv2N-Kh8a1wEPHmcw.jpeg" alt="Passion">
+                    </div>
+                </div>
+
+                
+                <div class="mamba-card mamba-card-reverse">
+                    <div class="mamba-card-text">
+                        <h3 class="mamba-card-title">OBSESSION</h3>
+                        <p class="mamba-card-description">
+                            Be obsessed with improvement. Every day is an opportunity to get better.
+                        </p>
+                    </div>
+                    <div class="mamba-card-image">
+                        <img src="/basketball-training-dedication.jpg" alt="Obsession">
+                    </div>
+                </div>
+
+                Mentality Card 3
+                <div class="mamba-card">
+                    <div class="mamba-card-text">
+                        <h3 class="mamba-card-title">RELENTLESS</h3>
+                        <p class="mamba-card-description">
+                            Never give up. Push through the pain, the doubt, and the fear. That's where greatness lives.
+                        </p>
+                    </div>
+                    <div class="mamba-card-image">
+                        <img src="/kobe-bryant-determination-focus.jpg" alt="Relentless">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="achievements" class="achievements-section">
+        <div class="achievements-container">
+            <h2 class="achievements-title">
+                CAREER <span>HIGHLIGHTS</span>
+            </h2>
+
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <span class="achievement-number">81</span>
+                    <span class="achievement-label">POINTS IN A SINGLE GAME</span>
+                    <span class="achievement-date">January 22, 2006</span>
+                </div>
+
+                <div class="achievement-card">
+                    <span class="achievement-number">2</span>
+                    <span class="achievement-label">OLYMPIC GOLD MEDALS</span>
+                    <span class="achievement-date">2008, 2012</span>
+                </div>
+
+                <div class="achievement-card">
+                    <span class="achievement-number">1</span>
+                    <span class="achievement-label">ACADEMY AWARD</span>
+                    <span class="achievement-date">Dear Basketball, 2018</span>
+                </div>
+
+                <div class="achievement-card">
+                    <span class="achievement-number">2</span>
+                    <span class="achievement-label">NBA FINALS MVP</span>
+                    <span class="achievement-date">2009, 2010</span>
+                </div>
+
+                <div class="achievement-card">
+                    <span class="achievement-number">15</span>
+                    <span class="achievement-label">ALL-NBA SELECTIONS</span>
+                    <span class="achievement-date">11x First Team</span>
+                </div>
+
+                <div class="achievement-card">
+                    <span class="achievement-number">33K</span>
+                    <span class="achievement-label">CAREER POINTS</span>
+                    <span class="achievement-date">4th All-Time</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    Numbers Section
+    <section class="numbers-section">
+        <div class="numbers-container">
+            <div class="numbers-content">
+                <div class="number-item">
+                    <div class="number-value">8</div>
+                    <div class="number-label">1996 - 2006</div>
+                </div>
+                <div class="number-symbol">+</div>
+                <div class="number-item">
+                    <div class="number-value">24</div>
+                    <div class="number-label">2006 - 2016</div>
+                </div>
+                <div class="number-symbol">=</div>
+                <div class="number-item">
+                    <div class="number-value number-infinity">∞</div>
+                    <div class="number-label">FOREVER</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    Tribute Section
+    <section id="tribute" class="tribute-section">
+        <div class="tribute-container">
+            <h2 class="tribute-title">
+                FOREVER IN OUR <span>HEARTS</span>
+            </h2>
+            <div class="tribute-content">
+                <img src="/kobe-bryant-tribute-memorial-fans.jpg" alt="Kobe Tribute" class="tribute-image">
+                <p class="tribute-text">
+                    On January 26, 2020, the world lost a legend. Kobe Bryant, along with his daughter Gianna and seven
+                    others, tragically passed away in a helicopter crash. His impact on basketball, sports, and culture
+                    will never be forgotten.
+                </p>
+                <p class="tribute-message">
+                    Thank you for inspiring us to be better. Thank you for showing us what greatness looks like. Thank
+                    you for the Mamba Mentality.
+                </p>
+            </div>
+
+            <div class="tribute-footer">
+                <div class="tribute-hashtag">#824</div>
+                <div class="tribute-slogan">MAMBA FOREVER</div>
+            </div>
+        </div>
+    </section>
+
+    Footer
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="footer-logo">KB24</span>
+                    <p class="footer-tagline">A tribute to the Black Mamba</p>
+                </div>
+                <div class="footer-center">
+                    <p class="footer-motto">MAMBA MENTALITY</p>
+                    <div class="footer-social">
+                        <a href="#">Instagram</a>
+                        <a href="#">Twitter</a>
+                        <a href="#">YouTube</a>
+                    </div>
+                </div>
+                <div class="footer-info">
+                    <p class="footer-copyright">© 2025 Kobe Bryant Tribute</p>
+                    <p class="footer-copyright">Created with love and respect</p>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
+
 </html>
